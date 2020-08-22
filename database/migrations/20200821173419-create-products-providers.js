@@ -18,8 +18,8 @@ module.exports = {
           },
           key: 'idProduct'
         },
-        onDelete: 'RESTRICT',
-        onUpdate: 'RESTRICT'
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
       },
       idProvider: {
         type: Sequelize.INTEGER,
@@ -30,8 +30,8 @@ module.exports = {
           },
           key: 'idProvider'
         },
-        onDelete: 'RESTRICT',
-        onUpdate: 'RESTRICT'
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
       },
       createdAt: {
         allowNull: false,

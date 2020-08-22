@@ -18,7 +18,7 @@ module.exports = {
       },
       {      
         tableName: 'Providers',
-        lastCode: 4,
+        lastCode: 5,
         createdAt: new Date(),
         updatedAt: new Date()
       }

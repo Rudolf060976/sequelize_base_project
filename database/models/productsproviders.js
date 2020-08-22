@@ -28,8 +28,8 @@ module.exports = (sequelize, DataTypes) => {
         model: 'Products',
         key: 'idProduct'
       },
-      onDelete: 'RESTRICT',
-      onUpdate: 'RESTRICT'
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
     },
     idProvider: {
       type: DataTypes.INTEGER,
@@ -38,8 +38,8 @@ module.exports = (sequelize, DataTypes) => {
         model: 'Providers',
         key: 'idProvider'
       },
-      onDelete: 'RESTRICT',
-      onUpdate: 'RESTRICT'
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
     }
   }, {
     sequelize,
