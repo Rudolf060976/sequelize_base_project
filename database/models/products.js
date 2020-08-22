@@ -13,9 +13,9 @@ module.exports = (sequelize, DataTypes) => {
 
       models.Product.belongsTo(models.Department, {
         as: 'department',
-        foreingKey: {
+        foreignKey: {
           type: DataTypes.INTEGER,
-          name: idDepartment,
+          name: 'idDepartment',
           allowNull: false
         },
         onUpdate: 'CASCADE',
@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
 
       models.Product.hasOne(models.SpecialProductData, {
         as: 'specialProduct',
-        foreingKey: {
+        foreignKey: {
           name: 'idProduct',
           type: DataTypes.INTEGER,
           allowNull: false
@@ -36,6 +36,17 @@ module.exports = (sequelize, DataTypes) => {
 
       models.Product.belongsToMany(models.Provider, {
         through: models.ProductsProvider
+      });
+
+      models.Product.hasMany(models.OrderDetail, {
+        as: 'orderDetails',
+        foreignKey: {
+          name: 'idProduct',
+          type: DataTypes.INTEGER,
+          allowNull: false
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'RESTRICT'
       });
 
     }

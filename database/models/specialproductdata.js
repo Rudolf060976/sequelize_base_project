@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       
       models.SpecialProductData.belongsTo(models.Product, {
         as: 'product',
-        foreingKey: {
+        foreignKey: {
           name: 'idProduct',
           type: DataTypes.INTEGER,
           allowNull: false
