@@ -21,13 +21,19 @@ router.get('/details/:orderId', async (req, res, next) => {
         where: {
             idOrder: orderId
         },
-        include: {
-            model: orm.models.OrderDetail,
-            as: 'details',
-            attributes: {
-                include: [[orm.sequelize.literal('(quantity * priceApplied * (1 + taxPercentApplied / 100) + shippingApplied)'), 'subTotal']]
-            }
-        }
+        include: [
+            {
+                model: orm.models.Client,
+                as: 'client'
+            },
+            {
+                model: orm.models.OrderDetail,
+                as: 'details',
+                attributes: {
+                    include: [[orm.sequelize.literal('(quantity * priceApplied * (1 + taxPercentApplied / 100) + shippingApplied)'), 'subTotal']]
+                }
+            }            
+        ]
 
     });
 
