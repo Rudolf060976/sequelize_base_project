@@ -57,11 +57,12 @@ class Orm {
     createAssociations() {
 
         const models = this._sequelize.models;
+        
 
-        Object.keys(models).forEach(modelClass => {
+        Object.keys(models).forEach(modelName => {
 
-            if(modelClass.associate) {
-                modelClass.associate(models);
+            if(models[modelName].associate) {
+                models[modelName].associate(models);
             }
 
         });

@@ -3,10 +3,17 @@ const express = require('express');
 const orm = require('./database/sequelize');
 
 
-//const routes = require('./routes');
+const departmentRoutes = require('./routes/departmentRoutes');
+
+const productRoutes = require('./routes/productRoutes');
+
+const providerRoutes = require('./routes/providerRoutes');
+
+const orderRoutes = require('./routes/ordersRoutes');
 
 
 const app = express();
+
 
 
 try {
@@ -18,6 +25,14 @@ try {
 
     orm.createAssociations();
 
+
+    app.use('/api/dep', departmentRoutes);
+
+    app.use('/api/prod',productRoutes);
+
+    app.use('/api/prov',providerRoutes);
+
+    app.use('/api/order',orderRoutes);
 
     (async () => {
 

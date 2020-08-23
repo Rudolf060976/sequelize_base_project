@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
 
-  OrderDetails.init({
+  OrderDetail.init({
     idOrderDetail: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -84,6 +84,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'OrderDetail',
+    tableName: 'order_details'
   });
   return OrderDetail;
 };

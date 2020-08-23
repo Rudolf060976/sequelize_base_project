@@ -11,8 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       
-      models.Provider.belogsToMany(models.Products, {
-        through: models.ProductsProvider        
+      models.Provider.belongsToMany(models.Product, {
+        through: models.ProductsProviders,
+        uniqueKey: 'idProductsProvider',
+        foreignKey: {
+          type: DataTypes.INTEGER,
+          name: 'idProvider',
+          allowNull: false
+        }                
       });
 
     }

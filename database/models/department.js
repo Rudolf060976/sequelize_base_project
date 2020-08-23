@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
         as: 'products',
         foreignKey: {
           type: DataTypes.INTEGER,
-          name: idDepartment,
+          name: 'idDepartment',
           allowNull: false
         },
         onDelete: 'RESTRICT',
