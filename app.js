@@ -25,6 +25,7 @@ try {
 
     orm.createAssociations();
 
+    app.use(express.json());
 
     app.use('/api/dep', departmentRoutes);
 

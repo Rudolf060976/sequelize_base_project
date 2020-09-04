@@ -181,5 +181,75 @@ router.get('/productWithAllModels/:productId', async (req, res, next) => {
 });
 
 
+router.post('/new', async (req, res, next) => {
+
+    const t = await orm.sequelize.transaction();
+
+    try {
+
+        const {
+            idDepartment,
+            name,
+            origen,
+            state,
+            price,
+            taxPercent,
+            shipping
+        } = req.body;
+    
+    
+        const codes = await orm.models.Code.findAll({
+            attributes: ['lastCode'],
+            where:{
+                tableName: 'products'
+            }        
+        }, { transaction: t });
+    
+        const lastCode = codes[0].lastCode;
+    
+        const nextCode = '00' + (lastCode + 1).toString();
+        
+        const newProduct = await orm.models.Product.create({
+            code: nextCode,
+            idDepartment,
+            name,
+            origen,
+            state,
+            price,
+            taxPercent,
+            shipping
+        }, { transaction: t });
+
+         await orm.models.Code.update(
+            {
+                lastCode: lastCode + 1
+            },
+            {
+                where: {
+                    tableName: 'products'
+                }
+        }, { transaction: t }); 
+
+        await t.commit();
+    
+        res.json({
+            newProduct
+        });
+
+        
+    } catch (error) {
+        console.log(error.message);
+        await t.rollback();
+
+        res.json({
+            error:'COULD NOT CREATE THE PRODUCT'
+        })
+
+    }
+
+    
+
+});
+
 module.exports = router;
 

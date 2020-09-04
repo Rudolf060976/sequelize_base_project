@@ -18,7 +18,9 @@ module.exports = (sequelize, DataTypes) => {
           type: DataTypes.INTEGER,
           name: 'idProvider',
           allowNull: false
-        }                
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'                        
       });
 
     }
